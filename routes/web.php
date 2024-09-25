@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Post;
@@ -36,6 +37,7 @@ Route::middleware(['auth', 'verified'])
 
 
         Route::resource('posts', PostController::class);
+        Route::resource('types', TypeController::class);
     });
 
 

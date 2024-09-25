@@ -48,11 +48,11 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
                         @endif
                         @else
@@ -63,11 +63,24 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('admin') }}">Admin Home</a>
-                                <a class="dropdown-item" href="{{ route('admin.posts.index') }}">Post List</a>
-                                <a class="dropdown-item" href="{{ url('profile') }}">Profile</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="{{ url('admin') }}">
+                                    <i class="fa-solid fa-house"></i>
+                                    Admin Home
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.posts.index') }}">
+                                    <i class="fa-solid fa-list"></i>
+                                    Posts List
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.types.index') }}">
+                                    <i class="fa-solid fa-code"></i>
+                                    Types List
+                                </a>
+                                <a class="dropdown-item" href="{{ url('profile') }}">
+                                    <i class="fa-solid fa-user"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
                                     Logout
                                 </a>
 

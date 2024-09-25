@@ -4,20 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
 use App\Models\Type;
 use Illuminate\Support\Facades\Log;
 
-class PostController extends Controller
+class typeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::all();
-        $types = Type::all();
-        return view('admin.posts.index', compact('posts', 'types'));
+        $types = type::all();
+
+        return view('admin.types.index', [
+            'types' => $types,
+        ]);
     }
 
     /**
@@ -25,9 +26,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $post = Post::all();
-        $types = type::all();
-        return view('admin.posts.create', compact('post', 'types'));
+        $type = type::all();
+        return view('admin.types.create', compact('type'));
     }
 
     /**
@@ -38,9 +38,9 @@ class PostController extends Controller
         $data = $request->all();
         Log::debug("data", $data);
         // creo dato da aggiungere nel db
-        $post = new Post();
+        $type = new type();
 
-        $post->fill($data);
+        $type->fill($data);
         // assegno valori al dato
         // $comic->title = $data['title'];
         // $comic->series = $data['series'];
@@ -49,8 +49,8 @@ class PostController extends Controller
         // $comic->img = $data['img'];
 
         // salvo
-        $post->save();
-        return redirect()->route('admin.posts.index');
+        $type->save();
+        return redirect()->route('admin.types.index');
     }
 
 
@@ -59,8 +59,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::find($id);
-        return view('admin.posts.show', compact('post'));
+        $type = type::find($id);
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -68,8 +68,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $post = Post::find($id);
-        return view('admin.posts.edit', compact('post'));
+        $type = type::find($id);
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -78,19 +78,19 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $post = Post::find($id);
+        $type = type::find($id);
 
-        $post->update($data);
+        $type->update($data);
 
-        return redirect()->route('admin.posts.show', $post);
+        return redirect()->route('admin.types.show', $type);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(type $type)
     {
-        $post->delete();
-        return redirect()->route('admin.posts.index')->with('deleted', 'post ' . '"' . $post->title . '"' . ' deleted');
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('deleted', 'type ' . '"' . $type->title . '"' . ' deleted');
     }
 }
